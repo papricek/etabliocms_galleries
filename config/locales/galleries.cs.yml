@@ -24,6 +24,7 @@ cs:
         text: Text
         visible: Viditelné
         attachable_temp: Připojit k
+        pictures_count: Obrázků
       "etabliocms_galleries/picture":
         class_name: Obrázek
         thumbnail: Náhled

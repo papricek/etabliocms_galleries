@@ -13,6 +13,7 @@
   <tr>
     <th style="width:30px;"><%= t('admin.order') %></th>
     <th><%= t('activerecord.attributes.etabliocms_galleries/gallery.title') %> </th>
+    <th><%= t('activerecord.attributes.etabliocms_galleries/gallery.pictures_count') %> </th>
     <th><%= t('admin.actions') %></th>
   </tr>
   </thead>
@@ -22,6 +23,7 @@
       <%= content_tag_for :tr, item, :class => cycle("odd-row", "even-row") do %>
           <td class="handle"><%= image_tag("icons/icon-refresh.gif") %></td>
           <td><%= link_to item.title, edit_admin_gallery_url(item.id) %></td>
+          <td class="centered"><%= item.pictures.count %></td>
           <td>
             <%= link_to t('admin.edit'), edit_admin_gallery_url(item.id), :class => 'icon icon-edit', :title => t('admin.edit') %>
             <%= link_to t('admin.destroy'), admin_gallery_url(item.id),
