@@ -1,0 +1,5 @@
+<h3><%= image_tag asset_path("admin/sidebar-galleries.png"), :alt => t('gallery.galleries') %><%= t('gallery.galleries') %></h3>
+<ul>
+  <li><%= link_to_unless_current I18n.t('gallery.galleries_count', :count => EtabliocmsGalleries::Gallery.count), admin_galleries_path %></li>
+  <li><%= link_to_unless_current t('gallery.add'), new_admin_gallery_path %></li>
+</ul>

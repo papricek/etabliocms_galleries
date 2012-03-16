@@ -1,0 +1,27 @@
+<fieldset>
+  <legend><%= t('gallery.admin_legend') %></legend>
+
+  <%= render "layouts/errors", :target => @gallery %>
+
+  <p>
+    <%= f.label :title, :id => "gallery_title_label" %>
+    <%= f.text_field :title, :class => 'text-field' %>
+  </p>
+
+  <p>
+    <%= f.label :text, :id => "gallery_text_label" %>
+    <%= f.textile_text_area :text %>
+  </p>
+
+  <p>
+    <%= f.label :visible, :id => "page_visible_label" %>
+    <%= f.boolean_yes_no_select :visible %>
+  </p>
+
+  <p class="submit-box">
+    <%= submit_tag t('admin.save'), :class => 'submit' %>
+    <span class="or"><%= t('admin.or') %></span>
+    <%= submit_tag t('admin.save_and_continue'), :class => 'submit', :name => "save_and_continue" %>
+  </p>
+
+</fieldset>
