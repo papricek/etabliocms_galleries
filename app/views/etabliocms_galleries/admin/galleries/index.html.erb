@@ -11,23 +11,50 @@
 <table class="admin-table">
   <thead>
   <tr>
+    <th style="width:30px;"><%= t('admin.order') %></th>
     <th><%= t('activerecord.attributes.etabliocms_galleries/gallery.title') %> </th>
     <th><%= t('admin.actions') %></th>
   </tr>
   </thead>
-  <tbody>
+  <tbody id="galleries">
 
   <% for item in @galleries %>
-      <tr class="<%= cycle("odd-row", "even-row") -%>">
-        <td><%= link_to item.title, edit_admin_gallery_url(item.id) %></td>
-        <td>
-          <%= link_to t('admin.edit'), edit_admin_gallery_url(item.id), :class => 'icon icon-edit', :title => t('admin.edit') %>
-          <%= link_to t('admin.destroy'), admin_gallery_url(item.id),
-                      :method => :delete,
-                      :confirm => t('gallery.destroy_confirmation'),
-                      :class => 'icon icon-destroy',
-                      :title => t('admin.destroy') %>
-        </td>
+      <%= content_tag_for :tr, item, :class => cycle("odd-row", "even-row") do %>
+          <td class="handle"><%= image_tag("icons/icon-refresh.gif") %></td>
+          <td><%= link_to item.title, edit_admin_gallery_url(item.id) %></td>
+          <td>
+            <%= link_to t('admin.edit'), edit_admin_gallery_url(item.id), :class => 'icon icon-edit', :title => t('admin.edit') %>
+            <%= link_to t('admin.destroy'), admin_gallery_url(item.id),
+                        :method => :delete,
+                        :confirm => t('gallery.destroy_confirmation'),
+                        :class => 'icon icon-destroy',
+                        :title => t('admin.destroy') %>
+          </td>
+      <% end %>
   <% end %>
   </tbody>
 </table>
+
+<script>
+    $(document).ready(function() {
+        $('#galleries').sortable({
+            axis: 'y',
+            dropOnEmpty: false,
+            handle: '.handle',
+            cursor: 'hand',
+            items: 'tr',
+            opacity: 0.4,
+            scroll: true,
+            update: function() {
+                $.ajax({
+                    type: 'post',
+                    data: $('#galleries').sortable('serialize'),
+                    dataType: 'script',
+                    complete: function(request) {
+                        $('#galleries').effect('highlight');
+                    },
+                    url: '<%= sort_admin_galleries_path %>'})
+            }
+        });
+    });
+</script>

@@ -40,6 +40,14 @@ module EtabliocmsGalleries
         redirect_to :action => 'index'
       end
 
+      def sort
+        Gallery.all.each do |gallery|
+          gallery.position = params['etabliocms_galleries_gallery'].index(gallery.id.to_s) + 1
+          gallery.save
+        end
+        render :nothing => true
+      end
+
     end
   end
 end

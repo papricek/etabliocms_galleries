@@ -1,4 +1,6 @@
 cs:
+  admin:
+    order: Pořadí
   gallery:
     galleries: Galerie
     galleries_count: "Galerie (%{count})"
