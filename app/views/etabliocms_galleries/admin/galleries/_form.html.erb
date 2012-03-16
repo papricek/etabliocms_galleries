@@ -13,6 +13,13 @@
     <%= f.textile_text_area :text %>
   </p>
 
+    <p>
+    <%= f.label :attachable_temp, t('activerecord.attributes.etabliocms_galleries/gallery.attachable_temp'), :id => "gallery_text_label" %>
+    <%= f.select :attachable_temp,
+                 EtabliocmsGalleries::Gallery.attachables_for_select,
+                 {:selected => "#{@gallery.attachable_type}##{@gallery.attachable_id}",:include_blank => true }%>
+  </p>
+
   <p>
     <%= f.label :visible, t('activerecord.attributes.etabliocms_galleries/gallery.visible'), :id => "page_visible_label" %>
     <%= f.boolean_yes_no_select :visible %>

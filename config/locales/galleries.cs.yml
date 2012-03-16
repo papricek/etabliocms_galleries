@@ -19,10 +19,13 @@ cs:
   activerecord:
     attributes:
       "etabliocms_galleries/gallery":
+        class_name: Galerie
         title: Nadpis
         text: Text
         visible: Viditelné
+        attachable_temp: Připojit k
       "etabliocms_galleries/picture":
+        class_name: Obrázek
         thumbnail: Náhled
         title: Popisek
         text: Text
