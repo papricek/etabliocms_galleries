@@ -1,19 +1,21 @@
-<tr class="field">
+<%= content_tag_for :tr, builder.object, :class => 'fields' do %>
 
-  <td>
-    <%= image_tag(builder.object.data.url(:thumbnail)) if builder.object && !builder.object.new_record? %>
-  </td>
+    <td class="handle"><%= image_tag("icons/icon-refresh.gif") %></td>
 
-  <td>
-    <%= builder.text_field :title, :placeholder => t('activerecord.attributes.etabliocms_galleries/gallery.title') %>
-  </td>
+    <td class="thumbnail">
+      <%= link_to(image_tag(builder.object.data.url(:thumbnail)), builder.object.data.url) if builder.object && !builder.object.new_record? %>
+    </td>
 
-  <td>
-    <%= builder.file_field :data %>
-  </td>
+    <td>
+      <%= builder.text_field :title, :placeholder => t('activerecord.attributes.etabliocms_galleries/gallery.title') %>
+    </td>
 
-  <td>
-    <%= link_to_remove_fields t('pictures.destroy'), builder %>
-  </td>
+    <td>
+      <%= builder.file_field :data %>
+    </td>
 
-</tr>
+    <td>
+      <%= link_to_remove_fields t('pictures.destroy'), builder %>
+    </td>
+
+<% end %>

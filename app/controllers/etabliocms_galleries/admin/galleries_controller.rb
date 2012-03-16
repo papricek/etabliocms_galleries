@@ -14,7 +14,7 @@ module EtabliocmsGalleries
         @gallery = Gallery.new(params[:etabliocms_galleries_gallery])
         if @gallery.save
           flash[:notice] = t('gallery.created')
-          redirect_to params[:save_and_continue].present? ? {:action => 'edit'} : {:action => 'index'}
+          redirect_to params[:save_and_continue].present? ? edit_admin_gallery_path(@gallery.id) : {:action => 'index'}
         else
           render :action => 'new'
         end
@@ -28,7 +28,7 @@ module EtabliocmsGalleries
         @gallery = Gallery.find(params[:id])
         if @gallery.update_attributes(params[:etabliocms_galleries_gallery])
           flash[:notice] = t('gallery.updated')
-          redirect_to params[:save_and_continue].present? ? {:action => 'edit'} : {:action => 'index'}
+          redirect_to params[:save_and_continue].present? ? edit_admin_gallery_path(@gallery.id) : {:action => 'index'}
         else
           render :action => 'edit'
         end
@@ -48,6 +48,14 @@ module EtabliocmsGalleries
         render :nothing => true
       end
 
+      def sort_pictures
+        @gallery = Gallery.find(params[:id])
+        @gallery.pictures.all.each do |picture|
+          picture.position = params['etabliocms_galleries_picture'].index(picture.id.to_s) + 1
+          picture.save
+        end
+        render :nothing => true
+      end
     end
   end
 end

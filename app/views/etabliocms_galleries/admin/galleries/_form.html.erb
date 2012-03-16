@@ -22,10 +22,11 @@
 
 <fieldset>
 
-  <legend><%= t('pictures.admin_legend')%></legend>
-  <table id="pictures" class="nested-fields-table">
+  <legend><%= t('pictures.admin_legend') %></legend>
+  <table id="pictures-table" class="nested-fields-table">
     <thead>
     <tr>
+      <th style="width:15px;"><%= t('admin.order') %></th>
       <th><%= t('activerecord.attributes.etabliocms_galleries/picture.thumbnail') %></th>
       <th><%= t('activerecord.attributes.etabliocms_galleries/picture.title') %></th>
       <th><%= t('activerecord.attributes.etabliocms_galleries/picture.data') %></th>
@@ -33,23 +34,50 @@
     </tr>
     </thead>
 
-    <tbody>
+    <tbody id="pictures">
     <%= f.fields_for :pictures do |builder| %>
         <%= render :partial => "picture_fields", :locals => {:builder => builder} %>
     <% end %>
     </tbody>
   </table>
 
-  <%= link_to_add_fields(t('pictures.add'), f, :pictures, '#pictures tbody', :class => 'text-icon icon-add') %>
+  <%= link_to_add_fields(t('pictures.add'), f, :pictures, '#pictures', :class => 'text-icon icon-add') %>
 
 </fieldset>
 
 <fieldset>
-
 
   <p class="submit-box">
     <%= submit_tag t('admin.save'), :class => 'submit' %>
     <span class="or"><%= t('admin.or') %></span>
     <%= submit_tag t('admin.save_and_continue'), :class => 'submit', :name => "save_and_continue" %>
   </p>
+
 </fieldset>
+
+<% unless @gallery.new_record? %>
+    <script>
+        $(document).ready(function() {
+            $('#pictures').sortable({
+                axis: 'y',
+                dropOnEmpty: false,
+                handle: '.handle',
+                cursor: 'hand',
+                items: 'tr',
+                opacity: 0.4,
+                scroll: true,
+                update: function() {
+                    $.ajax({
+                        type: 'post',
+                        data: $('#pictures').sortable('serialize'),
+                        dataType: 'script',
+                        complete: function(request) {
+                            $('#pictures').effect('highlight');
+                        },
+                        url: '<%= sort_pictures_admin_gallery_path(@gallery.id) %>'})
+                }
+            });
+        });
+    </script>
+
+<% end %>
