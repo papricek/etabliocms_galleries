@@ -2,6 +2,6 @@
 
 <h1><%= @gallery.title %></h1>
 
-<%= form_for :gallery,  :url => admin_gallery_path(@gallery.id), :html => {:method => :put, :id => "admin-form"} do |f| -%>
+<%= form_for @gallery,  :url => admin_gallery_path(@gallery.id), :html => {:method => :put, :id => "admin-form", :multipart => true} do |f| -%>
   <%= render :partial => 'form', :locals => { :f => f } %>
 <% end  %>

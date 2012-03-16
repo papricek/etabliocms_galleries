@@ -10,5 +10,8 @@ module EtabliocmsGalleries
     has_slug
     has_paper_trail
 
+    has_many :pictures, :order => 'position asc', :dependent => :destroy, :class_name => 'EtabliocmsGalleries::Picture'
+    accepts_nested_attributes_for :pictures, :allow_destroy => true
+
   end
 end

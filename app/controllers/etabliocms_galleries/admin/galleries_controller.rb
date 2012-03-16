@@ -11,7 +11,7 @@ module EtabliocmsGalleries
       end
 
       def create
-        @gallery = Gallery.new(params[:gallery])
+        @gallery = Gallery.new(params[:etabliocms_galleries_gallery])
         if @gallery.save
           flash[:notice] = t('gallery.created')
           redirect_to params[:save_and_continue].present? ? {:action => 'edit'} : {:action => 'index'}
@@ -26,7 +26,7 @@ module EtabliocmsGalleries
 
       def update
         @gallery = Gallery.find(params[:id])
-        if @gallery.update_attributes(params[:gallery])
+        if @gallery.update_attributes(params[:etabliocms_galleries_gallery])
           flash[:notice] = t('gallery.updated')
           redirect_to params[:save_and_continue].present? ? {:action => 'edit'} : {:action => 'index'}
         else

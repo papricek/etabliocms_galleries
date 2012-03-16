@@ -1,0 +1,19 @@
+<tr class="field">
+
+  <td>
+    <%= image_tag(builder.object.data.url(:thumbnail)) if builder.object && !builder.object.new_record? %>
+  </td>
+
+  <td>
+    <%= builder.text_field :title, :placeholder => t('activerecord.attributes.etabliocms_galleries/gallery.title') %>
+  </td>
+
+  <td>
+    <%= builder.file_field :data %>
+  </td>
+
+  <td>
+    <%= link_to_remove_fields t('pictures.destroy'), builder %>
+  </td>
+
+</tr>

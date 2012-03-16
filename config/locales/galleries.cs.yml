@@ -12,10 +12,18 @@ cs:
     admin_legend: Základní údaje o galerii
     edit: "Editace galerie %{title}"
     new: Nová galerie
+  pictures:
+    add: Přidat obrázek
+    destroy: Smazat
+    admin_legend: Obrázky
   activerecord:
     attributes:
       "etabliocms_galleries/gallery":
         title: Nadpis
         text: Text
         visible: Viditelné
-        locale: Jazyk
+      "etabliocms_galleries/picture":
+        thumbnail: Náhled
+        title: Popisek
+        text: Text
+        visible: Viditelné

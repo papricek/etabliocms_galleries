@@ -2,6 +2,7 @@ source "http://rubygems.org"
 gemspec
 
 gem 'etabliocms_core', :path => '/home/fafa/www/etabliocms/etabliocms_core'
+gem 'paperclip'
 
 group :test do
   gem 'rspec'

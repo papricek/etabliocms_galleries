@@ -4,24 +4,52 @@
   <%= render "layouts/errors", :target => @gallery %>
 
   <p>
-    <%= f.label :title, :id => "gallery_title_label" %>
+    <%= f.label :title, t('activerecord.attributes.etabliocms_galleries/gallery.title'), :id => "gallery_title_label" %>
     <%= f.text_field :title, :class => 'text-field' %>
   </p>
 
   <p>
-    <%= f.label :text, :id => "gallery_text_label" %>
+    <%= f.label :text, t('activerecord.attributes.etabliocms_galleries/gallery.text'), :id => "gallery_text_label" %>
     <%= f.textile_text_area :text %>
   </p>
 
   <p>
-    <%= f.label :visible, :id => "page_visible_label" %>
+    <%= f.label :visible, t('activerecord.attributes.etabliocms_galleries/gallery.visible'), :id => "page_visible_label" %>
     <%= f.boolean_yes_no_select :visible %>
   </p>
+
+</fieldset>
+
+<fieldset>
+
+  <legend><%= t('pictures.admin_legend')%></legend>
+  <table id="pictures" class="nested-fields-table">
+    <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.etabliocms_galleries/picture.thumbnail') %></th>
+      <th><%= t('activerecord.attributes.etabliocms_galleries/picture.title') %></th>
+      <th><%= t('activerecord.attributes.etabliocms_galleries/picture.data') %></th>
+      <th><%= t('admin.actions') %></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <%= f.fields_for :pictures do |builder| %>
+        <%= render :partial => "picture_fields", :locals => {:builder => builder} %>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to_add_fields(t('pictures.add'), f, :pictures, '#pictures tbody', :class => 'text-icon icon-add') %>
+
+</fieldset>
+
+<fieldset>
+
 
   <p class="submit-box">
     <%= submit_tag t('admin.save'), :class => 'submit' %>
     <span class="or"><%= t('admin.or') %></span>
     <%= submit_tag t('admin.save_and_continue'), :class => 'submit', :name => "save_and_continue" %>
   </p>
-
 </fieldset>

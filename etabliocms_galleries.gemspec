@@ -18,6 +18,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "rails", "~> 3.2.1"
   gem.add_dependency "etabliocms_core"
+  gem.add_dependency "paperclip"
 
   gem.add_development_dependency "sqlite3"
 end
