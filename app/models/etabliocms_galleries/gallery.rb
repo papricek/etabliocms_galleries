@@ -26,7 +26,8 @@ module EtabliocmsGalleries
 
     private
     def set_attachable
-      attachable_type, attachable_id = attachable_temp.split("#")
+      return if attachable_temp.blank?
+      attachable_type, attachable_id = attachable_temp.to_s.split("#")
       if attachable_type.present? and attachable_id.present?
         self.attachable_type = attachable_type
         self.attachable_id = attachable_id
