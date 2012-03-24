@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    etabliocms_galleries (0.0.1)
+    etabliocms_galleries (0.0.3)
       etabliocms_core
       paperclip
       rails (~> 3.2.1)

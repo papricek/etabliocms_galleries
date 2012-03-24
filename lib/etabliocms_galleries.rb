@@ -5,6 +5,7 @@ module EtabliocmsGalleries
   mattr_accessor :paperclip_large
   mattr_accessor :paperclip_medium
   mattr_accessor :paperclip_thumbnail
+  mattr_accessor :attachables
 
   def self.setup
     yield self

@@ -21,6 +21,7 @@ module EtabliocmsGalleries
     def self.attachables_for_select
       sum = []
       sum += EtabliocmsPages::Page.all if defined?(EtabliocmsPages)
+      EtabliocmsGalleries.attachables.each {|string| sum += eval(string) }
       sum.map { |item| ["#{I18n.t("activerecord.attributes.#{item.class.to_s.underscore}.class_name")}: #{item.title}", "#{item.class}##{item.id}"] }
     end
 
