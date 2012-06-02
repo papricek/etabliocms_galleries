@@ -6,6 +6,8 @@ module EtabliocmsGalleries
     attr_accessor :attachable_temp
     belongs_to :attachable, :polymorphic => true
     before_save :set_attachable
+    before_save :set_pictures
+    attr_accesor :pictures_array
 
     scope :visible, where(:visible => true)
 
@@ -17,8 +19,8 @@ module EtabliocmsGalleries
     has_many :pictures, :order => 'position asc', :dependent => :destroy, :class_name => 'EtabliocmsGalleries::Picture'
     accepts_nested_attributes_for :pictures, :allow_destroy => true
 
-    def pictures_array=(array)
-      array.each do |file|
+    def set_pictures
+      pictures_array.each do |file|
         pictures.build(:data => file)
       end
     end
