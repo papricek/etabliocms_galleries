@@ -20,17 +20,21 @@ module EtabliocmsGalleries
     accepts_nested_attributes_for :pictures, :allow_destroy => true
 
     def set_pictures
-      pictures_array.each do |file|
-        pictures.build(:data => file)
+      if pictures_array.present?
+        pictures_array.each do |file|
+          pictures.build(:data => file,
+                         :title => file.original_filename,
+                         :position => pictures_array.index(file))
+        end
       end
     end
 
     def self.attachables_for_select
       sum = []
       sum += EtabliocmsPages::Page.all if defined?(EtabliocmsPages)
-      EtabliocmsGalleries.attachables.each {|string| sum += eval(string) } if EtabliocmsGalleries.attachables.present?
-      
-      sum.map { |item| 
+      EtabliocmsGalleries.attachables.each { |string| sum += eval(string) } if EtabliocmsGalleries.attachables.present?
+
+      sum.map { |item|
         title = item.is_a?(EtabliocmsPages::Page) ? "#{'&nbsp;'*2*item.level}#{item.title}" : item.title
         ["#{I18n.t("activerecord.attributes.#{item.class.to_s.underscore}.class_name")}: #{title}".html_safe, "#{item.class}##{item.id}"] }
     end
