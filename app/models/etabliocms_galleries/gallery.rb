@@ -22,7 +22,10 @@ module EtabliocmsGalleries
       sum = []
       sum += EtabliocmsPages::Page.all if defined?(EtabliocmsPages)
       EtabliocmsGalleries.attachables.each {|string| sum += eval(string) } if EtabliocmsGalleries.attachables.present?
-      sum.map { |item| ["#{I18n.t("activerecord.attributes.#{item.class.to_s.underscore}.class_name")}: #{item.title}", "#{item.class}##{item.id}"] }
+      
+      sum.map { |item| 
+        title = item.is_a?(EtabliocmsPages::Page) ? "#{'&nbsp;'*2*item.level}#{item.title}" : item.title
+        ["#{I18n.t("activerecord.attributes.#{item.class.to_s.underscore}.class_name")}: #{title}".html_safe, "#{item.class}##{item.id}"] }
     end
 
     private
