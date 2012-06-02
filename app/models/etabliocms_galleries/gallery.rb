@@ -7,7 +7,7 @@ module EtabliocmsGalleries
     belongs_to :attachable, :polymorphic => true
     before_save :set_attachable
     before_save :set_pictures
-    attr_accesor :pictures_array
+    attr_accessor :pictures_array
 
     scope :visible, where(:visible => true)
 
