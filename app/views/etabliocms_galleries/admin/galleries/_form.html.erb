@@ -30,6 +30,12 @@
 <fieldset>
 
   <legend><%= t('pictures.admin_legend') %></legend>
+  
+  <p>
+    <%= f.label :pictures_array, t('activerecord.attributes.etabliocms_galleries/gallery.pictures_array'), :id => "gallery_pictures_array_label" %>
+    <%= f.file_field :pictures_array, :multiple => true %>
+  </p>
+
   <table id="pictures-table" class="nested-fields-table">
     <thead>
     <tr>

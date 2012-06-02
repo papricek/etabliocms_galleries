@@ -17,6 +17,11 @@ module EtabliocmsGalleries
     has_many :pictures, :order => 'position asc', :dependent => :destroy, :class_name => 'EtabliocmsGalleries::Picture'
     accepts_nested_attributes_for :pictures, :allow_destroy => true
 
+    def pictures_array=(array)
+      array.each do |file|
+        pictures.build(:data => file)
+      end
+    end
 
     def self.attachables_for_select
       sum = []

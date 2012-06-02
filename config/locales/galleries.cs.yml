@@ -25,6 +25,7 @@ cs:
         visible: Viditelné
         attachable_temp: Připojit k
         pictures_count: Obrázků
+        pictures_array: Multiupload
       "etabliocms_galleries/picture":
         class_name: Obrázek
         thumbnail: Náhled
