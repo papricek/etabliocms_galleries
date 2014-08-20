@@ -1,0 +1,34 @@
+en:
+  admin:
+    order: Pořadí
+  gallery:
+    galleries: Galerie
+    galleries_count: "Galerie (%{count})"
+    add: Přidat galerii
+    created: Galerie byla úspěšně vytvořena.
+    updated: Galerie byla úspěšně upravena.
+    destroyed: Galerie byla úspěšně odstraněna.
+    destroy_confirmation: Skutečně chcete smazat tuto galerii?
+    admin_legend: Základní údaje o galerii
+    edit: "Editace galerie %{title}"
+    new: Nová galerie
+  pictures:
+    add: Přidat obrázek
+    destroy: Smazat
+    admin_legend: Obrázky
+  activerecord:
+    attributes:
+      "etabliocms_galleries/gallery":
+        class_name: Galerie
+        title: Nadpis
+        text: Text
+        visible: Viditelné
+        attachable_temp: Připojit k
+        pictures_count: Obrázků
+        pictures_array: Multiupload
+      "etabliocms_galleries/picture":
+        class_name: Obrázek
+        thumbnail: Náhled
+        title: Popisek
+        text: Text
+        visible: Viditelné
