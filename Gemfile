@@ -1,8 +1,11 @@
 source "http://rubygems.org"
 gemspec
 
-gem 'etabliocms_core', :path => '/Users/patrikjira/www/etabliocms/etabliocms_core'
+gem 'etabliocms_core', :path => '/Volumes/Data/Projects/Ruby/etabliocms/etabliocms_core'
+#gem 'etabliocms_core', :path => '/Users/patrikjira/www/etabliocms/etabliocms_core'
 gem 'paperclip'
+gem 'jquery-ui-rails'
+
 
 group :test do
   gem 'rspec'
